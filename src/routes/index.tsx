@@ -29,18 +29,6 @@ export const Route = createFileRoute("/")({
 
 const packages = [
   {
-    name: "Interieurpakket",
-    sub: "Van binnen",
-    price: "Vanaf € 75",
-    items: [
-      "Volledig stofzuigen: zetels, vloer, koffer en hoeken",
-      "Dashboard, portieren en middenconsole reinigen",
-      "Bekleding en bekledingsnaden diep reinigen",
-      "Ramen binnen streepvrij maken",
-      "Kunststof & leder verzorgen, interieur fris maken",
-    ],
-  },
-  {
     name: "Exterieurpakket",
     sub: "Van buiten",
     price: "Vanaf € 45",
@@ -50,6 +38,18 @@ const packages = [
       "Velgen en dorpels grondig reinigen",
       "Verzegeling: water en vuil rolen makkelijker af",
       "Ramen buiten streepvrij en droog afwerken",
+    ],
+  },
+  {
+    name: "Interieurpakket",
+    sub: "Van binnen",
+    price: "Vanaf € 75",
+    items: [
+      "Volledig stofzuigen: zetels, vloer, koffer en hoeken",
+      "Dashboard, portieren en middenconsole reinigen",
+      "Bekleding en bekledingsnaden diep reinigen",
+      "Ramen binnen streepvrij maken",
+      "Kunststof & leder verzorgen, interieur fris maken",
     ],
   },
   {
