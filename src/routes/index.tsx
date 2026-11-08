@@ -133,7 +133,7 @@ function Index() {
           <nav className="border-t border-border bg-background px-4 py-3 md:hidden">
             {navLinks.map(([href, label]) => (
               <a key={href} href={href} onClick={() => setMenu(false)}
-                className="block rounded-md px-3 py-3 text-sm text-muted-foreground hover:bg-secondary/60 hover:text-foreground">
+                className="block rounded-md px-3 py-3 text-sm text-foreground/90 hover:bg-secondary/60 hover:text-primary">
                 {label}
               </a>
             ))}
@@ -146,7 +146,7 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-5 sm:py-28 lg:py-40">
           <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-xs sm:tracking-[0.3em]">Interieur- & exterieurreiniging · Izegem</p>
-          <h1 className="max-w-2xl font-display text-4xl font-black italic uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
+          <h1 className="max-w-2xl font-display text-[2rem] font-black italic uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
             Showroomglans,<br /><span className="text-primary">elke keer.</span>
           </h1>
           <p className="mt-6 max-w-lg text-base text-muted-foreground sm:text-lg">Van een grondige interieurreiniging tot een gewassen en verzegelde wagen. Met oog voor elk detail.</p>
