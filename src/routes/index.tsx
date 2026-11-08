@@ -146,7 +146,7 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-5 sm:py-28 lg:py-40">
           <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-xs sm:tracking-[0.3em]">Interieur- & exterieurreiniging · Izegem</p>
-          <h1 className="max-w-2xl font-display text-[2rem] font-black italic uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
+          <h1 className="max-w-2xl font-display text-[clamp(1.55rem,8vw,3.4rem)] font-black italic uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
             Showroomglans,<br /><span className="text-primary">elke keer.</span>
           </h1>
           <p className="mt-6 max-w-lg text-base text-muted-foreground sm:text-lg">Van een grondige interieurreiniging tot een gewassen en verzegelde wagen. Met oog voor elk detail.</p>
