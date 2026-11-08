@@ -190,7 +190,7 @@ function Index() {
               <li className="flex items-center gap-3"><MapPin size={18} className="text-primary" />{ADDRESS}</li>
             </ul>
             <iframe title="Kaart met locatie Baronielaan 65, Izegem" className="mt-8 h-64 w-full rounded-lg border border-border grayscale invert-[0.9]" loading="lazy"
-              src={`https://maps.google.com/maps?q=${encodeURIComponent(ADDRESS)}&z=15&output=embed`} />
+              src={`https://maps.google.com/maps?q=${encodeURIComponent(ADDRESS)}&z=15&hl=nl&output=embed`} />
           </div>
           <form onSubmit={submit} className="space-y-4 rounded-lg border border-border bg-background p-7">
             <h3 className="font-display text-xl font-extrabold uppercase">Offerte of afspraak</h3>
