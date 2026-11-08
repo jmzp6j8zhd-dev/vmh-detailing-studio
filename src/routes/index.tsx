@@ -41,7 +41,7 @@ const packages = [
     ],
   },
   {
-    name: "Exterieurnpakket",
+    name: "Exterieurpakket",
     sub: "Van buiten",
     price: "Vanaf € 45",
     items: [
