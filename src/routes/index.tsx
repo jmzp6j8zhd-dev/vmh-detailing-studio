@@ -18,6 +18,14 @@ import shotLak from "@/assets/exterieur-hoogglans-lak.jpg.asset.json";
 import shotAmg from "@/assets/interieur-voetenruimte-amg.jpg.asset.json";
 import shotRangeRover from "@/assets/interieur-range-rover-creme.jpg.asset.json";
 import shotMg from "@/assets/interieur-mg-voetenruimte.jpg.asset.json";
+import video1 from "@/assets/resultaat-video-1.mp4.asset.json";
+import video2 from "@/assets/resultaat-video-2.mp4.asset.json";
+import video3 from "@/assets/resultaat-video-3.mp4.asset.json";
+import video4 from "@/assets/resultaat-video-4.mp4.asset.json";
+import poster1 from "@/assets/resultaat-video-1.jpg.asset.json";
+import poster2 from "@/assets/resultaat-video-2.jpg.asset.json";
+import poster3 from "@/assets/resultaat-video-3.jpg.asset.json";
+import poster4 from "@/assets/resultaat-video-4.jpg.asset.json";
 
 const PHONE = "0495 635 210";
 const TEL = "tel:+32495635210";
@@ -91,6 +99,13 @@ const onDemand = [
   { name: "Lakcorrectie", desc: "Meer-staps polijsten: swirls, krasjes en matte lak aangepakt voor een diepe glans." },
   { name: "Keramische coating", desc: "Langdurige lakbescherming met een hard, glanzend laagje." },
   { name: "Sealant", desc: "Krachtige verzegeling met lange standtijd, perfect als onderhoud." },
+];
+
+const videos = [
+  { video: video1, poster: poster1 },
+  { video: video2, poster: poster2 },
+  { video: video3, poster: poster3 },
+  { video: video4, poster: poster4 },
 ];
 
 const navLinks = [
@@ -238,6 +253,14 @@ function Index() {
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
           {results.map((r) => (
             <img key={r.alt} src={r.img.url} alt={r.alt} loading="lazy" className="aspect-[3/4] w-full rounded-lg object-cover" />
+          ))}
+          {videos.map(({ video, poster }, index) => (
+            <video key={video.asset_id} controls playsInline preload="none" poster={poster.url}
+              aria-label={`Resultaat VMH Carcleaning – filmpje ${index + 1}`}
+              className="aspect-[3/4] w-full rounded-lg bg-background object-contain">
+              <source src={video.url} type="video/mp4" />
+              Je toestel kan dit filmpje niet afspelen. <a href={video.url}>Bekijk het filmpje</a>.
+            </video>
           ))}
           <a href={IG} target="_blank" rel="noreferrer"
             className="flex aspect-[3/4] flex-col items-center justify-center gap-3 rounded-lg border border-border bg-card/40 p-4 text-center transition hover:border-primary">
