@@ -13,8 +13,11 @@ import {
 } from "lucide-react";
 import logo from "@/assets/vmh_logo.jpg.asset.json";
 import hero from "@/assets/hero-car.jpg";
-import polish from "@/assets/result-polish.jpg";
-import interior from "@/assets/result-interior.jpg";
+import shotMercedes from "@/assets/interieur-mercedes-cognac.jpg.asset.json";
+import shotLak from "@/assets/exterieur-hoogglans-lak.jpg.asset.json";
+import shotAmg from "@/assets/interieur-voetenruimte-amg.jpg.asset.json";
+import shotRangeRover from "@/assets/interieur-range-rover-creme.jpg.asset.json";
+import shotMg from "@/assets/interieur-mg-voetenruimte.jpg.asset.json";
 
 const PHONE = "0495 635 210";
 const TEL = "tel:+32495635210";
@@ -74,6 +77,14 @@ const packages = [
       "Wagen terug als nieuw, binnen en buiten",
     ],
   },
+];
+
+const results = [
+  { img: shotMercedes, alt: "Gereinigd Mercedes-interieur met cognac lederen bekleding" },
+  { img: shotLak, alt: "Hoogglans gepoetste lak met spiegelende weerspiegeling" },
+  { img: shotAmg, alt: "Net gereinigde voetenruimte met AMG-vloermat" },
+  { img: shotRangeRover, alt: "Crème lederen zetels en middenconsole, grondig gereinigd" },
+  { img: shotMg, alt: "Gereinigde voetenruimte met leder en oranje stiksels" },
 ];
 
 const onDemand = [
@@ -223,15 +234,17 @@ function Index() {
 
       <section id="resultaten" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-5 sm:py-24">
         <h2 className="font-display text-3xl font-black italic uppercase sm:text-4xl">Resultaten</h2>
-        <p className="mt-2 text-sm text-muted-foreground sm:text-base">Meer werk zien? Volg <a href={IG} target="_blank" rel="noreferrer" className="text-primary">@vmh.carcleaning</a> op Instagram.</p>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <img src={hero} alt="Gewassen zwarte wagen met diepe glans" loading="lazy" className="h-56 w-full rounded-lg object-cover sm:h-72 sm:col-span-2" />
-          <img src={polish} alt="Polijsten met diepe glans" loading="lazy" width={1024} height={1024} className="h-56 w-full rounded-lg object-cover sm:h-72" />
-          <img src={interior} alt="Gereinigd lederen interieur" loading="lazy" width={1024} height={1024} className="h-56 w-full rounded-lg object-cover sm:h-72" />
-          <div className="flex h-56 flex-col justify-center rounded-lg border border-border p-6 sm:h-72 sm:p-8 sm:col-span-2">
-            <p className="font-display text-2xl font-black italic uppercase sm:text-3xl">Vuil weg. <span className="text-primary">Glans terug.</span></p>
-            <p className="mt-3 text-sm text-muted-foreground sm:text-base">Handwas, verzorgde materialen en een verzegeling die water en vuil afstoot.</p>
-          </div>
+        <p className="mt-2 text-sm text-muted-foreground sm:text-base">Een greep uit recent werk: interieur en exterieur. Vuil weg. <span className="text-primary">Glans terug.</span></p>
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          {results.map((r) => (
+            <img key={r.alt} src={r.img.url} alt={r.alt} loading="lazy" className="aspect-[3/4] w-full rounded-lg object-cover" />
+          ))}
+          <a href={IG} target="_blank" rel="noreferrer"
+            className="flex aspect-[3/4] flex-col items-center justify-center gap-3 rounded-lg border border-border bg-card/40 p-4 text-center transition hover:border-primary">
+            <Instagram size={22} className="text-primary" />
+            <p className="font-display text-sm font-extrabold uppercase sm:text-base">Meer werk op Instagram</p>
+            <p className="text-xs text-muted-foreground">@vmh.carcleaning</p>
+          </a>
         </div>
       </section>
 
