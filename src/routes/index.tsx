@@ -209,7 +209,6 @@ function Index() {
 
       <section id="pakketten" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-5 sm:py-24">
         <h2 className="font-display text-3xl font-black italic uppercase sm:text-4xl">Pakketten</h2>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">Drie vaste pakketten, duidelijke prijzen. Elk pakket op maat gemaakt per wagen — stuur een foto van je wagen voor een exacte offerte.</p>
         <div className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
           {packages.map((p) => (
             <div key={p.name} className={`flex flex-col rounded-lg border p-6 sm:p-7 ${p.featured ? "border-primary bg-card shadow-[0_0_40px_-10px_var(--primary)] sm:col-span-2 lg:col-span-1" : "border-border bg-card"}`}>
