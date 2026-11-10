@@ -102,12 +102,35 @@ function Index() {
   const [sent, setSent] = useState(false);
   const [menu, setMenu] = useState(false);
 
-  function submit(e: FormEvent<HTMLFormElement>) {
+  const [status, setStatus] = useState<"idle" | "busy" | "error">("idle");
+
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const body = `Naam: ${f.get("name")}\nTelefoon: ${f.get("phone")}\nWagen: ${f.get("car")}\nPakket: ${f.get("pkg")}\n\n${f.get("msg")}`;
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent("Offerte of afspraak – " + f.get("name"))}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    const form = e.currentTarget;
+    const f = new FormData(form);
+    setStatus("busy");
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `Nieuwe offerteaanvraag – ${f.get("name")}`,
+          _template: "table",
+          _captcha: "false",
+          Naam: f.get("name"),
+          GSM: f.get("phone"),
+          Wagen: f.get("car"),
+          Pakket: f.get("pkg"),
+          Bericht: f.get("msg"),
+        }),
+      });
+      if (!res.ok) throw new Error();
+      form.reset();
+      setSent(true);
+      setStatus("idle");
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -238,8 +261,9 @@ function Index() {
               <option>Weet ik nog niet</option>
             </select>
             <textarea name="msg" rows={4} placeholder="Bericht / gewenste datum" className="w-full rounded-md border border-input bg-background px-4 py-3 text-base outline-none focus:border-primary" />
-            <button className="min-h-11 w-full rounded-md bg-primary py-3 text-sm font-semibold text-primary-foreground hover:opacity-90">Verstuur aanvraag</button>
-            {sent && <p className="text-sm text-primary">Je e-mailprogramma wordt geopend om de aanvraag te versturen.</p>}
+            <button disabled={status === "busy"} className="min-h-11 w-full rounded-md bg-primary py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-60">{status === "busy" ? "Bezig met versturen…" : "Verstuur aanvraag"}</button>
+            {sent && <p className="text-sm text-primary">Bedankt! Je aanvraag is verstuurd. We nemen snel contact met je op.</p>}
+            {status === "error" && <p className="text-sm text-destructive">Versturen lukte niet. Bel of stuur een WhatsApp naar {PHONE}.</p>}
           </form>
         </div>
       </section>
