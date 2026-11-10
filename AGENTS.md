@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Serve uploaded result videos as CDN-hosted H.264/AAC MP4 with fast-start, poster images, native controls and inline playback, so visitors can play them across devices without downloading every clip first.
