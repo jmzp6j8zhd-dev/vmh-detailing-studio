@@ -179,7 +179,7 @@ function ContentEditor() {
     setBusy(true);
     const { error } = await supabase.from("site_content").upsert({ key: "main", value: c as never, updated_at: new Date().toISOString() });
     setBusy(false);
-    if (error) return toast.error("Opslaan mislukt.");
+    if (error) { toast.error("Opslaan mislukt."); return; }
     toast.success("Opgeslagen. De site is bijgewerkt.");
     qc.invalidateQueries({ queryKey: ["site_content"] });
   }
@@ -270,7 +270,7 @@ function MediaManager() {
     const poster = f.get("poster") as File;
     if (!file?.size) return;
     const kind = file.type.startsWith("video") ? "video" : "image";
-    if (kind === "video" && file.type !== "video/mp4") return toast.error("Gebruik een MP4-filmpje, dat speelt op elk toestel.");
+    if (kind === "video" && file.type !== "video/mp4") { toast.error("Gebruik een MP4-filmpje, dat speelt op elk toestel."); return; }
     setBusy(true);
     try {
       const url = await uploadFile(file);
