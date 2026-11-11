@@ -13,19 +13,9 @@ import {
 } from "lucide-react";
 import logo from "@/assets/vmh_logo.jpg.asset.json";
 import hero from "@/assets/hero-car.jpg";
-import shotMercedes from "@/assets/interieur-mercedes-cognac.jpg.asset.json";
-import shotLak from "@/assets/exterieur-hoogglans-lak.jpg.asset.json";
-import shotAmg from "@/assets/interieur-voetenruimte-amg.jpg.asset.json";
-import shotRangeRover from "@/assets/interieur-range-rover-creme.jpg.asset.json";
-import shotMg from "@/assets/interieur-mg-voetenruimte.jpg.asset.json";
-import video1 from "@/assets/resultaat-video-1.mp4.asset.json";
-import video2 from "@/assets/resultaat-video-2.mp4.asset.json";
-import video3 from "@/assets/resultaat-video-3.mp4.asset.json";
-import video4 from "@/assets/resultaat-video-4.mp4.asset.json";
-import poster1 from "@/assets/resultaat-video-1.jpg.asset.json";
-import poster2 from "@/assets/resultaat-video-2.jpg.asset.json";
-import poster3 from "@/assets/resultaat-video-3.jpg.asset.json";
-import poster4 from "@/assets/resultaat-video-4.jpg.asset.json";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { contentQuery, mediaQuery, defaultContent } from "@/lib/site-content";
 
 const PHONE = "0495 635 210";
 const TEL = "tel:+32495635210";
@@ -48,66 +38,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const packages = [
-  {
-    name: "Exterieurpakket",
-    sub: "Van buiten",
-    price: "Vanaf € 45",
-    items: [
-      "Voorwas om los vuil zacht af te spoelen",
-      "Handwas met shampoo en washandschoen",
-      "Velgen en dorpels grondig reinigen",
-      "Verzegeling: water en vuil rolen makkelijker af",
-      "Ramen buiten streepvrij en droog afwerken",
-    ],
-  },
-  {
-    name: "Interieurpakket",
-    sub: "Van binnen",
-    price: "Vanaf € 75",
-    items: [
-      "Volledig stofzuigen: zetels, vloer, koffer en hoeken",
-      "Dashboard, portieren en middenconsole reinigen",
-      "Bekleding en bekledingsnaden diep reinigen",
-      "Ramen binnen streepvrij maken",
-      "Kunststof & leder verzorgen, interieur fris maken",
-    ],
-  },
-  {
-    name: "Interieur + Exterieur",
-    sub: "Combi",
-    price: "€ 99",
-    featured: true,
-    items: [
-      "Alles uit het interieurpakket",
-      "Alles uit het exterieurpakket",
-      "Eén afspraak, één prijs",
-      "Wagen terug als nieuw, binnen en buiten",
-    ],
-  },
-];
-
-const results = [
-  { img: shotMercedes, alt: "Gereinigd Mercedes-interieur met cognac lederen bekleding" },
-  { img: shotLak, alt: "Hoogglans gepoetste lak met spiegelende weerspiegeling" },
-  { img: shotAmg, alt: "Net gereinigde voetenruimte met AMG-vloermat" },
-  { img: shotRangeRover, alt: "Crème lederen zetels en middenconsole, grondig gereinigd" },
-  { img: shotMg, alt: "Gereinigde voetenruimte met leder en oranje stiksels" },
-];
-
-const onDemand = [
-  { name: "Lakcorrectie", desc: "Meer-staps polijsten: swirls, krasjes en matte lak aangepakt voor een diepe glans." },
-  { name: "Keramische coating", desc: "Langdurige lakbescherming met een hard, glanzend laagje." },
-  { name: "Sealant", desc: "Krachtige verzegeling met lange standtijd, perfect als onderhoud." },
-];
-
-const videos = [
-  { video: video1, poster: poster1 },
-  { video: video2, poster: poster2 },
-  { video: video3, poster: poster3 },
-  { video: video4, poster: poster4 },
-];
-
 const navLinks = [
   ["#pakketten", "Pakketten"],
   ["#polijsten", "Polijsten & coatings"],
@@ -125,6 +55,11 @@ function Btn({ href, children, primary }: { href: string; children: React.ReactN
 }
 
 function Index() {
+  const { data: content = defaultContent } = useQuery(contentQuery);
+  const { data: media = [] } = useQuery(mediaQuery);
+  const { packages, onDemand } = content;
+  const results = media.filter((m) => m.kind === "image");
+  const videos = media.filter((m) => m.kind === "video");
   const [sent, setSent] = useState(false);
   const [menu, setMenu] = useState(false);
 
@@ -135,6 +70,10 @@ function Index() {
     const form = e.currentTarget;
     const f = new FormData(form);
     setStatus("busy");
+    const s = (k: string) => String(f.get(k) ?? "").trim();
+    const { error: dbError } = await supabase.from("quotes").insert({
+      name: s("name"), phone: s("phone"), car: s("car") || null, package: s("pkg"), message: s("msg") || null,
+    });
     try {
       const res = await fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
         method: "POST",
@@ -150,7 +89,7 @@ function Index() {
           Bericht: f.get("msg"),
         }),
       });
-      if (!res.ok) throw new Error();
+      if (!res.ok && dbError) throw new Error();
       form.reset();
       setSent(true);
       setStatus("idle");
@@ -196,9 +135,9 @@ function Index() {
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-5 sm:py-28 lg:py-40">
           <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-xs sm:tracking-[0.3em]">Interieur- & exterieurreiniging · Izegem</p>
           <h1 className="max-w-2xl font-display text-[length:clamp(1.55rem,8vw,3.4rem)] font-black italic uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
-            Showroomglans,<br /><span className="text-primary">elke keer.</span>
+            {content.heroTitle1}<br /><span className="text-primary">{content.heroTitle2}</span>
           </h1>
-          <p className="mt-6 max-w-lg text-base text-muted-foreground sm:text-lg">Van een grondige interieurreiniging tot een gewassen en verzegelde wagen. Met oog voor elk detail.</p>
+          <p className="mt-6 max-w-lg text-base text-muted-foreground sm:text-lg">{content.heroText}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Btn href={TEL} primary><Phone size={16} /> {PHONE}</Btn>
             <Btn href={WA}><MessageCircle size={16} /> WhatsApp</Btn>
@@ -251,11 +190,11 @@ function Index() {
         <p className="mt-2 text-sm text-muted-foreground sm:text-base">Een greep uit recent werk: interieur en exterieur. Vuil weg. <span className="text-primary">Glans terug.</span></p>
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
           {results.map((r) => (
-            <img key={r.alt} src={r.img.url} alt={r.alt} loading="lazy" className="aspect-[3/4] w-full rounded-lg object-cover" />
+            <img key={r.id} src={r.url} alt={r.alt} loading="lazy" className="aspect-[3/4] w-full rounded-lg object-cover" />
           ))}
-          {videos.map(({ video, poster }, index) => (
-            <video key={video.asset_id} controls playsInline preload="none" poster={poster.url}
-              aria-label={`Resultaat VMH Carcleaning – filmpje ${index + 1}`}
+          {videos.map((video, index) => (
+            <video key={video.id} controls playsInline preload="none" poster={video.poster_url ?? undefined}
+              aria-label={video.alt || `Resultaat VMH Carcleaning – filmpje ${index + 1}`}
               className="aspect-[3/4] w-full rounded-lg bg-background object-contain">
               <source src={video.url} type="video/mp4" />
               Je toestel kan dit filmpje niet afspelen. <a href={video.url}>Bekijk het filmpje</a>.
