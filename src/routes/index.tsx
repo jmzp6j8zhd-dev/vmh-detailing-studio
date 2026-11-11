@@ -94,6 +94,7 @@ function Index() {
       setSent(true);
       setStatus("idle");
     } catch {
+      if (!dbError) { form.reset(); setSent(true); setStatus("idle"); return; }
       setStatus("error");
     }
   }
