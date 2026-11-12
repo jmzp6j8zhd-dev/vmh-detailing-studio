@@ -40,7 +40,7 @@ export const defaultContent: SiteContent = {
   onDemand: [
     { name: "Lakcorrectie", desc: "Polijsten in meerdere stappen: fijne krasjes en doffe lak weg, voor een diepe glans." },
     { name: "Keramische coating", desc: "Een harde, glanzende laag die je lak jarenlang beschermt." },
-    { name: "Sealant", desc: "Een sterke beschermlaag die lang meegaat, ideaal als onderhoud." },
+    { name: "Lakverzegeling", desc: "Een sterke beschermlaag die lang meegaat, ideaal als onderhoud." },
   ],
 };
 
