@@ -192,12 +192,10 @@ function Index() {
         {results.length > 0 && (
           <>
             <h3 className="mt-10 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Foto's</h3>
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-              {results.map((r) => (
-                <figure key={r.id} className="overflow-hidden rounded-lg border border-border bg-card">
-                  <img src={r.url} alt={r.alt} loading="lazy" className="aspect-[4/5] w-full object-cover" />
-                  {r.alt && <figcaption className="px-3 py-2 text-xs text-muted-foreground">{r.alt}</figcaption>}
-                </figure>
+            <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
+              {results.map((r, i) => (
+                <img key={r.id} src={r.url} alt={r.alt} loading="lazy"
+                  className={`aspect-[4/5] w-full rounded-lg border border-border object-cover ${i === results.length - 1 && results.length % 2 === 1 ? "col-span-2 aspect-[16/10] lg:col-span-1 lg:aspect-[4/5]" : ""}`} />
               ))}
             </div>
           </>
