@@ -20,13 +20,13 @@ export const defaultContent: SiteContent = {
       "Voorwas om los vuil zacht af te spoelen",
       "Handwas met shampoo en washandschoen",
       "Velgen en dorpels grondig reinigen",
-      "Verzegeling: water en vuil rolen makkelijker af",
+      "Verzegeling: water en vuil rollen er makkelijker af",
       "Ramen buiten streepvrij en droog afwerken",
     ] },
     { name: "Interieurpakket", sub: "Van binnen", price: "Vanaf € 75", items: [
       "Volledig stofzuigen: zetels, vloer, koffer en hoeken",
       "Dashboard, portieren en middenconsole reinigen",
-      "Bekleding en bekledingsnaden diep reinigen",
+      "Zetels, stof en naden grondig reinigen",
       "Ramen binnen streepvrij maken",
       "Kunststof & leder verzorgen, interieur fris maken",
     ] },
@@ -38,9 +38,9 @@ export const defaultContent: SiteContent = {
     ] },
   ],
   onDemand: [
-    { name: "Lakcorrectie", desc: "Meer-staps polijsten: swirls, krasjes en matte lak aangepakt voor een diepe glans." },
-    { name: "Keramische coating", desc: "Langdurige lakbescherming met een hard, glanzend laagje." },
-    { name: "Sealant", desc: "Krachtige verzegeling met lange standtijd, perfect als onderhoud." },
+    { name: "Lakcorrectie", desc: "Polijsten in meerdere stappen: fijne krasjes en doffe lak weg, voor een diepe glans." },
+    { name: "Keramische coating", desc: "Een harde, glanzende laag die je lak jarenlang beschermt." },
+    { name: "Lakverzegeling", desc: "Een sterke beschermlaag die lang meegaat, ideaal als onderhoud." },
   ],
 };
 

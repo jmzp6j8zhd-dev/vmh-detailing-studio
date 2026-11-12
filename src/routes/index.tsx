@@ -168,7 +168,7 @@ function Index() {
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-5 sm:py-24">
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-xs sm:tracking-[0.3em]">Meer dan een wasbeurt</p>
           <h2 className="mt-2 font-display text-3xl font-black italic uppercase sm:text-4xl">Polijsten & coatings</h2>
-          <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">Deze behandelingen kunnen we niet in één vaste prijs stoppen: elk lakwerk is anders. Prijs altijd op aanvraag, na het zien van je wagen.</p>
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">Elke wagen is anders, daarom geen vaste prijs. Stuur een foto en je krijgt een prijs op maat.</p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {onDemand.map((o) => (
               <div key={o.name} className="rounded-lg border border-border bg-background/60 p-6">
@@ -180,7 +180,7 @@ function Index() {
             ))}
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Btn href="#contact" primary><Mail size={16} /> Offerte op aanvraag</Btn>
+            <Btn href="#contact" primary><Mail size={16} /> Vraag een prijs aan</Btn>
             <Btn href={WA}><MessageCircle size={16} /> Stuur foto's via WhatsApp</Btn>
           </div>
         </div>
@@ -188,25 +188,35 @@ function Index() {
 
       <section id="resultaten" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-5 sm:py-24">
         <h2 className="font-display text-3xl font-black italic uppercase sm:text-4xl">Resultaten</h2>
-        <p className="mt-2 text-sm text-muted-foreground sm:text-base">Een greep uit recent werk: interieur en exterieur. Vuil weg. <span className="text-primary">Glans terug.</span></p>
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-          {results.map((r) => (
-            <img key={r.id} src={r.url} alt={r.alt} loading="lazy" className="aspect-[3/4] w-full rounded-lg object-cover" />
-          ))}
-          {videos.map((video, index) => (
-            <video key={video.id} controls playsInline preload="none" poster={video.poster_url ?? undefined}
-              aria-label={video.alt || `Resultaat VMH Carcleaning – filmpje ${index + 1}`}
-              className="aspect-[3/4] w-full rounded-lg bg-background object-contain">
-              <source src={video.url} type="video/mp4" />
-              Je toestel kan dit filmpje niet afspelen. <a href={video.url}>Bekijk het filmpje</a>.
-            </video>
-          ))}
-          <a href={IG} target="_blank" rel="noreferrer"
-            className="flex aspect-[3/4] flex-col items-center justify-center gap-3 rounded-lg border border-border bg-card/40 p-4 text-center transition hover:border-primary">
-            <Instagram size={22} className="text-primary" />
-            <p className="font-display text-sm font-extrabold uppercase sm:text-base">Meer werk op Instagram</p>
-            <p className="text-xs text-muted-foreground">@vmh.carcleaning</p>
-          </a>
+        <p className="mt-2 text-sm text-muted-foreground sm:text-base">Recent werk, binnen en buiten. Vuil weg. <span className="text-primary">Glans terug.</span></p>
+        {results.length > 0 && (
+          <>
+            <h3 className="mt-10 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Foto's</h3>
+            <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
+              {results.map((r, i) => (
+                <img key={r.id} src={r.url} alt={r.alt} loading="lazy"
+                  className={`aspect-[4/5] w-full rounded-lg border border-border object-cover ${i === results.length - 1 && results.length % 2 === 1 ? "col-span-2 aspect-[16/10] lg:col-span-1 lg:aspect-[4/5]" : ""}`} />
+              ))}
+            </div>
+          </>
+        )}
+        {videos.length > 0 && (
+          <>
+            <h3 className="mt-12 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Filmpjes</h3>
+            <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+              {videos.map((video, index) => (
+                <video key={video.id} controls playsInline preload="none" poster={video.poster_url ?? undefined}
+                  aria-label={video.alt || `Resultaat VMH Carcleaning – filmpje ${index + 1}`}
+                  className="aspect-[9/16] w-full rounded-lg border border-border bg-card object-cover">
+                  <source src={video.url} type="video/mp4" />
+                  Je toestel kan dit filmpje niet afspelen. <a href={video.url}>Bekijk het filmpje</a>.
+                </video>
+              ))}
+            </div>
+          </>
+        )}
+        <div className="mt-10">
+          <Btn href={IG}><Instagram size={16} /> Meer werk op Instagram</Btn>
         </div>
       </section>
 
