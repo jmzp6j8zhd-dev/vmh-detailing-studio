@@ -17,6 +17,8 @@ export const Route = createFileRoute("/admin")({
       { name: "robots", content: "noindex, nofollow" },
       { property: "og:title", content: "Beheer | VMH Carcleaning" },
       { property: "og:description", content: "Beheerpaneel van VMH Carcleaning." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: AdminPage,
@@ -103,7 +105,7 @@ function Login() {
       if (error) toast.error("Inloggen mislukt. Controleer e-mail en wachtwoord.");
     } else {
       const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${window.location.origin}/admin` } });
-      if (error) toast.error(error.message);
+      if (error) toast.error("Account aanmaken lukt niet. Controleer je gegevens of probeer het later opnieuw.");
       else toast.success("Account aangemaakt. Klik op de link in je mailbox om te bevestigen.");
     }
     setBusy(false);
@@ -200,7 +202,7 @@ function ContentEditor() {
           return (
             <div key={i} className="grid gap-3 rounded-lg border border-border p-4 sm:grid-cols-3">
               <Field label="Naam"><input className={input} value={p.name} onChange={(e) => upd({ name: e.target.value })} /></Field>
-              <Field label="Bovenschrift"><input className={input} value={p.sub} onChange={(e) => upd({ sub: e.target.value })} /></Field>
+              <Field label="Korte tekst boven de naam"><input className={input} value={p.sub} onChange={(e) => upd({ sub: e.target.value })} /></Field>
               <Field label="Prijs"><input className={input} value={p.price} onChange={(e) => upd({ price: e.target.value })} /></Field>
               <div className="sm:col-span-3">
                 <Field label="Wat zit erin (één per regel)">
@@ -314,7 +316,7 @@ function MediaManager() {
       <form onSubmit={add} className="space-y-3 rounded-lg border border-border bg-card p-4">
         <h2 className="font-display text-lg font-extrabold uppercase">Nieuwe foto of filmpje</h2>
         <Field label="Foto (JPG/PNG) of filmpje (MP4)"><input name="file" type="file" required accept="image/*,video/mp4" className={input} /></Field>
-        <Field label="Voorbeeldbeeld voor filmpje (optioneel)"><input name="poster" type="file" accept="image/*" className={input} /></Field>
+        <Field label="Omslagfoto voor het filmpje (niet verplicht)"><input name="poster" type="file" accept="image/*" className={input} /></Field>
         <Field label="Korte beschrijving"><input name="alt" placeholder="bv. Gereinigd interieur BMW X5" className={input} /></Field>
         <button disabled={busy} className={btnPrimary}><Upload size={16} />{busy ? "Bezig met uploaden…" : "Uploaden"}</button>
       </form>

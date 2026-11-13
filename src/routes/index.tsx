@@ -16,6 +16,7 @@ import hero from "@/assets/hero-car.jpg";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { contentQuery, mediaQuery, defaultContent } from "@/lib/site-content";
+import { groupResults } from "@/lib/result-groups";
 
 const PHONE = "0495 635 210";
 const TEL = "tel:+32495635210";
@@ -58,8 +59,7 @@ function Index() {
   const { data: content = defaultContent } = useQuery(contentQuery);
   const { data: media = [] } = useQuery(mediaQuery);
   const { packages, onDemand } = content;
-  const results = media.filter((m) => m.kind === "image");
-  const videos = media.filter((m) => m.kind === "video");
+  const resultGroups = groupResults(media);
   const [sent, setSent] = useState(false);
   const [menu, setMenu] = useState(false);
 
@@ -189,32 +189,30 @@ function Index() {
       <section id="resultaten" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-5 sm:py-24">
         <h2 className="font-display text-3xl font-black italic uppercase sm:text-4xl">Resultaten</h2>
         <p className="mt-2 text-sm text-muted-foreground sm:text-base">Recent werk, binnen en buiten. Vuil weg. <span className="text-primary">Glans terug.</span></p>
-        {results.length > 0 && (
-          <>
-            <h3 className="mt-10 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Foto's</h3>
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
-              {results.map((r, i) => (
-                <img key={r.id} src={r.url} alt={r.alt} loading="lazy"
-                  className={`aspect-[4/5] w-full rounded-lg border border-border object-cover ${i === results.length - 1 && results.length % 2 === 1 ? "col-span-2 aspect-[16/10] lg:col-span-1 lg:aspect-[4/5]" : ""}`} />
-              ))}
-            </div>
-          </>
-        )}
-        {videos.length > 0 && (
-          <>
-            <h3 className="mt-12 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Filmpjes</h3>
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-              {videos.map((video, index) => (
-                <video key={video.id} controls playsInline preload="none" poster={video.poster_url ?? undefined}
-                  aria-label={video.alt || `Resultaat VMH Carcleaning – filmpje ${index + 1}`}
-                  className="aspect-[9/16] w-full rounded-lg border border-border bg-card object-cover">
-                  <source src={video.url} type="video/mp4" />
-                  Je toestel kan dit filmpje niet afspelen. <a href={video.url}>Bekijk het filmpje</a>.
-                </video>
-              ))}
-            </div>
-          </>
-        )}
+        <div className="mt-10 space-y-12">
+          {resultGroups.map((group) => (
+            <section key={group.title} aria-label={group.title} className="border-t border-border pt-6">
+              <h3 className="font-display text-lg font-bold uppercase">{group.title}</h3>
+              <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-5">
+                {group.items.map((item) => (
+                  <figure key={item.id} className="min-w-0">
+                    <figcaption className={`mb-2 text-sm font-semibold ${item.label === "Na" ? "text-primary" : "text-muted-foreground"}`}>{item.label}</figcaption>
+                    {item.kind === "image" ? (
+                      <img src={item.url} alt={item.alt} loading="lazy" className="aspect-[3/4] w-full rounded-md bg-card object-contain" />
+                    ) : (
+                      <video controls playsInline preload="none" poster={item.poster_url ?? undefined}
+                        aria-label={`${group.title} · ${item.label}`}
+                        className="aspect-[3/4] w-full rounded-md bg-card object-contain">
+                        <source src={item.url} type="video/mp4" />
+                        Je toestel kan dit filmpje niet afspelen. <a href={item.url}>Bekijk het filmpje</a>.
+                      </video>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
         <div className="mt-10">
           <Btn href={IG}><Instagram size={16} /> Meer werk op Instagram</Btn>
         </div>

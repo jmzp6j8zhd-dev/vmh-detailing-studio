@@ -30,3 +30,4 @@ use the editor.
 <!-- LOVABLE:END -->
 
 - Serve uploaded result videos as CDN-hosted H.264/AAC MP4 with fast-start, poster images, native controls and inline playback, so visitors can play them across devices without downloading every clip first.
+- Group existing result media by stable asset filenames in the frontend; only render returned media rows so admin deletions remain respected and unknown uploads stay visible.
