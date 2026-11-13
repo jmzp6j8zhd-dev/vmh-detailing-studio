@@ -14,21 +14,21 @@ export type MediaItem = { id: string; kind: "image" | "video"; url: string; post
 export const defaultContent: SiteContent = {
   heroTitle1: "Showroomglans,",
   heroTitle2: "elke keer.",
-  heroText: "Van een grondige interieurreiniging tot een gewassen en verzegelde wagen. Met oog voor elk detail.",
+  heroText: "Je wagen grondig schoon, van binnen en van buiten. Met oog voor elk detail.",
   packages: [
     { name: "Exterieurpakket", sub: "Van buiten", price: "Vanaf € 45", items: [
       "Voorwas om los vuil zacht af te spoelen",
       "Handwas met shampoo en washandschoen",
       "Velgen en dorpels grondig reinigen",
-      "Verzegeling: water en vuil rollen er makkelijker af",
+      "Beschermlaag: water en vuil glijden makkelijker van de lak",
       "Ramen buiten streepvrij en droog afwerken",
     ] },
     { name: "Interieurpakket", sub: "Van binnen", price: "Vanaf € 75", items: [
       "Volledig stofzuigen: zetels, vloer, koffer en hoeken",
-      "Dashboard, portieren en middenconsole reinigen",
+      "Dashboard, deuren en middenconsole reinigen",
       "Zetels, stof en naden grondig reinigen",
       "Ramen binnen streepvrij maken",
-      "Kunststof & leder verzorgen, interieur fris maken",
+      "Kunststof en leder verzorgen, interieur fris maken",
     ] },
     { name: "Interieur + Exterieur", sub: "Combi", price: "€ 99", featured: true, items: [
       "Alles uit het interieurpakket",
@@ -38,8 +38,8 @@ export const defaultContent: SiteContent = {
     ] },
   ],
   onDemand: [
-    { name: "Lakcorrectie", desc: "Polijsten in meerdere stappen: fijne krasjes en doffe lak weg, voor een diepe glans." },
-    { name: "Keramische coating", desc: "Een harde, glanzende laag die je lak jarenlang beschermt." },
+    { name: "Lak polijsten", desc: "Fijne krasjes en doffe plekken verminderen, voor meer glans." },
+    { name: "Keramische coating", desc: "Een harde, glanzende laag die je lak langdurig beschermt." },
     { name: "Lakverzegeling", desc: "Een sterke beschermlaag die lang meegaat, ideaal als onderhoud." },
   ],
 };
