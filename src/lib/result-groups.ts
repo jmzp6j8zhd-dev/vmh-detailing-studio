@@ -11,7 +11,7 @@ export function groupResults(media: MediaItem[]) {
   const used = new Set<string>();
   const groups = projects.map((project) => {
     const items = project.files.flatMap((filename) => {
-      const item = media.find((m) => m.url.split("?")[0].endsWith(`/${filename}`));
+      const item = media.find((m) => m.url.split("?")[0]?.endsWith(`/${filename}`));
       if (!item) return [];
       used.add(item.id);
       const label = filename === "resultaat-video-2.mp4" ? "Vóór" : filename === "resultaat-video-4.mp4" ? "Na" : item.kind === "image" ? "Foto" : "Filmpje";
