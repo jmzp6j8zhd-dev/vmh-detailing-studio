@@ -40,7 +40,6 @@ export const defaultContent: SiteContent = {
   onDemand: [
     { name: "Lak polijsten", desc: "Fijne krasjes en doffe plekken verminderen, voor meer glans." },
     { name: "Keramische coating", desc: "Een harde, glanzende laag die je lak langdurig beschermt." },
-    { name: "Lakverzegeling", desc: "Een sterke beschermlaag die lang meegaat, ideaal als onderhoud." },
   ],
 };
 
