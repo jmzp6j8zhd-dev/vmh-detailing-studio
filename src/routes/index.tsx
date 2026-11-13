@@ -169,7 +169,7 @@ function Index() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-xs sm:tracking-[0.3em]">Meer dan een wasbeurt</p>
           <h2 className="mt-2 font-display text-3xl font-black italic uppercase sm:text-4xl">Polijsten & coatings</h2>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">Elke wagen is anders, daarom geen vaste prijs. Stuur een foto en je krijgt een prijs op maat.</p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {onDemand.map((o) => (
               <div key={o.name} className="rounded-lg border border-border bg-background/60 p-6">
                 <Sparkles size={18} className="text-primary" />
