@@ -1,8 +1,8 @@
 # Taken
 
-- [ ] Titels en beschrijvingen optimaliseren voor car detailing en autoreiniging in Izegem.
-- [ ] Lokale bedrijfsgegevens als gestructureerde data toevoegen.
-- [ ] Robots, canonicals en indexatie controleren en optimaliseren.
+- [x] Titels en beschrijvingen optimaliseren voor car detailing en autoreiniging in Izegem.
+- [x] Lokale bedrijfsgegevens als gestructureerde data toevoegen.
+- [x] Robots, canonicals en indexatie controleren en optimaliseren.
 - [ ] Sitemap toevoegen zodra het definitieve openbare Vercel- of domeinadres bekend is.
 
 - [x] Logo, foto's, filmpjes en voorbeeldbeelden als statische bestanden voor Vercel toegevoegd; laden en afspelen lokaal gecontroleerd.
