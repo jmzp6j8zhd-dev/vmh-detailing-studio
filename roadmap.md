@@ -1,5 +1,7 @@
 # Taken
 
+- [ ] Beheerpaneel volledig testen: inloggen, aanvragen, teksten opslaan en media beheren; testgegevens opruimen.
+
 - [x] Titels en beschrijvingen optimaliseren voor car detailing en autoreiniging in Izegem.
 - [x] Lokale bedrijfsgegevens als gestructureerde data toevoegen.
 - [x] Robots, canonicals en indexatie controleren en optimaliseren.
