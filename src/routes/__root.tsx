@@ -82,10 +82,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "VMH Carcleaning" },
-      { name: "description", content: "Polijst- & detailingservices in Izegem." },
+      { title: "VMH Carcleaning | Car detailing in Izegem" },
+      { name: "description", content: "Car detailing, autoreiniging, polijsten en coatings in Izegem. Bekijk de pakketten en vraag je offerte aan bij VMH Carcleaning." },
       { name: "author", content: "VMH Carcleaning" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "VMH Carcleaning" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
