@@ -24,17 +24,43 @@ const WA = "https://wa.me/32495635210";
 const EMAIL = "vanmeerhaegheyoran@gmail.com";
 const IG = "https://instagram.com/vmh.carcleaning";
 const ADDRESS = "Baronielaan 65, 8870 Izegem";
+const DESCRIPTION = "Car detailing en autoreiniging in Izegem. Interieur vanaf € 75, exterieur vanaf € 45, combi € 99. Polijsten en coatings op aanvraag. Vraag je offerte aan.";
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "@id": "/#bedrijf",
+  name: "VMH Carcleaning",
+  description: "Lokaal bedrijf voor car detailing, interieur- en exterieurreiniging, polijsten en keramische coatings in Izegem.",
+  url: "/",
+  telephone: "+32495635210",
+  email: EMAIL,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Baronielaan 65",
+    postalCode: "8870",
+    addressLocality: "Izegem",
+    addressRegion: "West-Vlaanderen",
+    addressCountry: "BE",
+  },
+  areaServed: { "@type": "City", name: "Izegem" },
+  sameAs: [IG],
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "VMH Carcleaning | Interieur- & exterieurreiniging Izegem" },
-      { name: "description", content: "Interieurreiniging vanaf € 75, exterieur vanaf € 45 en de combi voor € 99 in Izegem. Polijsten en coatings op aanvraag. Vraag je offerte aan bij VMH Carcleaning." },
-      { property: "og:title", content: "VMH Carcleaning | Interieur- & exterieurreiniging in Izegem" },
-      { property: "og:description", content: "Interieur vanaf € 75, exterieur vanaf € 45, combi € 99. Polijsten en coatings op aanvraag." },
+      { title: "Car detailing & autoreiniging Izegem | VMH Carcleaning" },
+      { name: "description", content: DESCRIPTION },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "Car detailing & autoreiniging in Izegem | VMH Carcleaning" },
+      { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(localBusinessSchema) }],
   }),
   component: Index,
 });
@@ -134,7 +160,7 @@ function Index() {
         <img src={hero} alt="Polijsten van een zwarte wagen" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover opacity-60" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-5 sm:py-28 lg:py-40">
-          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-xs sm:tracking-[0.3em]">Interieur- & exterieurreiniging · Izegem</p>
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-xs sm:tracking-[0.3em]">Car detailing & autoreiniging · Izegem</p>
           <h1 className="max-w-2xl font-display text-[length:clamp(1.55rem,8vw,3.4rem)] font-black italic uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
             {content.heroTitle1}<br /><span className="text-primary">{content.heroTitle2}</span>
           </h1>
