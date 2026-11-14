@@ -24,15 +24,16 @@ const WA = "https://wa.me/32495635210";
 const EMAIL = "vanmeerhaegheyoran@gmail.com";
 const IG = "https://instagram.com/vmh.carcleaning";
 const ADDRESS = "Baronielaan 65, 8870 Izegem";
+const SITE_URL = "https://www.vmhcarcleaning.com";
 const DESCRIPTION = "Car detailing en autoreiniging in Izegem. Interieur vanaf € 75, exterieur vanaf € 45, combi € 99. Polijsten en coatings op aanvraag. Vraag je offerte aan.";
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "AutoRepair",
-  "@id": "/#bedrijf",
+  "@id": `${SITE_URL}/#bedrijf`,
   name: "VMH Carcleaning",
   description: "Lokaal bedrijf voor car detailing, interieur- en exterieurreiniging, polijsten en keramische coatings in Izegem.",
-  url: "/",
+  url: `${SITE_URL}/`,
   telephone: "+32495635210",
   email: EMAIL,
   address: {
@@ -48,6 +49,7 @@ const localBusinessSchema = {
 };
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Car detailing & autoreiniging Izegem | VMH Carcleaning" },
@@ -56,10 +58,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Car detailing & autoreiniging in Izegem | VMH Carcleaning" },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: `${SITE_URL}/` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
     scripts: [{ type: "application/ld+json", children: JSON.stringify(localBusinessSchema) }],
   }),
   component: Index,
