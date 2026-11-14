@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Beheer | VMH Carcleaning" },

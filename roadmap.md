@@ -3,7 +3,7 @@
 - [x] Titels en beschrijvingen optimaliseren voor car detailing en autoreiniging in Izegem.
 - [x] Lokale bedrijfsgegevens als gestructureerde data toevoegen.
 - [x] Robots, canonicals en indexatie controleren en optimaliseren.
-- [ ] Sitemap toevoegen zodra het definitieve openbare Vercel- of domeinadres bekend is.
+- [x] Sitemap voor www.vmhcarcleaning.com toevoegen, in robots.txt vermelden en controleren dat het beheer is uitgesloten.
 
 - [x] Logo, foto's, filmpjes en voorbeeldbeelden als statische bestanden voor Vercel toegevoegd; laden en afspelen lokaal gecontroleerd.
 
