@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
   Phone,
@@ -90,6 +90,7 @@ function Index() {
   const resultGroups = groupResults(media);
   const [sent, setSent] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [showMap, setShowMap] = useState(false);
 
   const [status, setStatus] = useState<"idle" | "busy" | "error">("idle");
 
@@ -258,8 +259,17 @@ function Index() {
               <li><a href={IG} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-primary"><Instagram size={18} className="shrink-0 text-primary" />vmh.carcleaning</a></li>
               <li className="flex items-center gap-3"><MapPin size={18} className="shrink-0 text-primary" />{ADDRESS}</li>
             </ul>
-            <iframe title="Kaart met locatie Baronielaan 65, Izegem" className="mt-8 h-56 w-full rounded-lg border border-border grayscale invert-[0.9] sm:h-64" loading="lazy"
-              src={`https://maps.google.com/maps?q=${encodeURIComponent(ADDRESS)}&z=15&hl=nl&output=embed`} />
+            {showMap ? (
+              <iframe title="Kaart met locatie Baronielaan 65, Izegem" className="mt-8 h-56 w-full rounded-lg border border-border grayscale invert-[0.9] sm:h-64" loading="lazy"
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(ADDRESS)}&z=15&hl=nl&output=embed`} />
+            ) : (
+              <div className="mt-8 flex h-56 w-full flex-col items-center justify-center gap-3 rounded-lg border border-border bg-background/60 px-4 text-center sm:h-64">
+                <MapPin size={28} className="text-primary" />
+                <p className="text-sm font-semibold">{ADDRESS}</p>
+                <button type="button" onClick={() => setShowMap(true)} className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90">Kaart tonen</button>
+                <p className="max-w-xs text-xs text-muted-foreground">De kaart komt van Google, dat dan cookies kan plaatsen. Of <a className="text-primary underline" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`} target="_blank" rel="noreferrer">open Google Maps</a>.</p>
+              </div>
+            )}
           </div>
           <form onSubmit={submit} className="space-y-4 rounded-lg border border-border bg-background p-5 sm:p-7">
             <h3 className="font-display text-lg font-extrabold uppercase sm:text-xl">Offerte of afspraak</h3>
@@ -275,12 +285,13 @@ function Index() {
             <button disabled={status === "busy"} className="min-h-11 w-full rounded-md bg-primary py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-60">{status === "busy" ? "Bezig met versturen…" : "Verstuur aanvraag"}</button>
             {sent && <p className="text-sm text-primary">Bedankt! Je aanvraag is verstuurd. We nemen snel contact met je op.</p>}
             {status === "error" && <p className="text-sm text-destructive">Versturen lukte niet. Bel of stuur een WhatsApp naar {PHONE}.</p>}
+            <p className="text-xs text-muted-foreground">Je gegevens gebruiken we alleen om je aanvraag te beantwoorden en we wissen ze na 1 maand. Lees de <Link to="/privacy" className="text-primary underline">privacyverklaring</Link>.</p>
           </form>
         </div>
       </section>
 
       <footer className="border-t border-border px-4 py-8 text-center text-xs text-muted-foreground sm:text-sm">
-        © {new Date().getFullYear()} VMH Carcleaning · {ADDRESS} · {PHONE}
+        © {new Date().getFullYear()} VMH Carcleaning · {ADDRESS} · {PHONE} · <Link to="/privacy" className="hover:text-primary">Privacy</Link>
       </footer>
     </div>
   );
