@@ -103,6 +103,7 @@ function Index() {
     e.preventDefault();
     const form = e.currentTarget;
     const f = new FormData(form);
+    if (String(f.get("website") ?? "")) { form.reset(); setSent(true); return; }
     setStatus("busy");
     const s = (k: string) => String(f.get(k) ?? "").trim();
     const { error: dbError } = await supabase.from("quotes").insert({
@@ -278,8 +279,9 @@ function Index() {
           </div>
           <form onSubmit={submit} className="space-y-4 rounded-lg border border-border bg-background p-5 sm:p-7">
             <h3 className="font-display text-lg font-extrabold uppercase sm:text-xl">Offerte of afspraak</h3>
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
             {[["name", "Naam"], ["phone", "GSM"], ["car", "Merk & model wagen"]].map(([n, l]) => (
-              <input key={n} name={n} required={n !== "car"} placeholder={l} className="w-full rounded-md border border-input bg-background px-4 py-3 text-base outline-none focus:border-primary" />
+              <input key={n} name={n} maxLength={n === "phone" ? 50 : 200} required={n !== "car"} placeholder={l} className="w-full rounded-md border border-input bg-background px-4 py-3 text-base outline-none focus:border-primary" />
             ))}
             <select name="pkg" className="w-full rounded-md border border-input bg-background px-4 py-3 text-base">
               {packages.map((p) => <option key={p.name}>{p.name} – {p.price}</option>)}
