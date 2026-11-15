@@ -41,7 +41,7 @@ function Privacy() {
           <p>Alleen wat je zelf invult in het aanvraagformulier: je naam, GSM-nummer, merk en model van je wagen, het gekozen pakket en je bericht.</p>
 
           <H>Waarom?</H>
-          <p>Alleen om je aanvraag te beantwoorden en een afspraak te maken. We gebruiken je gegevens niet voor reclame en verkopen ze nooit door.</p>
+          <p>Alleen om je aanvraag te beantwoorden en een afspraak te maken. Dat mag omdat je zelf om een offerte vraagt (stappen vóór een overeenkomst, art. 6.1.b AVG). We gebruiken je gegevens niet voor reclame en verkopen ze nooit door.</p>
 
           <H>Hoe lang?</H>
           <p>Aanvragen op de website worden na 1 maand automatisch verwijderd. Je aanvraag komt ook per e-mail bij ons binnen; die mail verwijderen we eveneens na 1 maand.</p>
