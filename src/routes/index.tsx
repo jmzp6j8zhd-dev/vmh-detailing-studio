@@ -138,7 +138,7 @@ function Index() {
     <div className="min-h-dvh bg-background font-sans text-foreground">
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-5">
-          <img src={logo.url} alt="Logo VMH Carcleaning" className="h-10 w-auto sm:h-12" />
+          <img src={`https://a385355a-8095-4f14-a281-be4c579f4df1.lovableproject.com${logo.url}`} alt="Logo VMH Carcleaning" className="h-10 w-auto sm:h-12" />
           <nav className="hidden gap-7 text-sm text-muted-foreground md:flex">
             {navLinks.map(([href, label]) => (
               <a key={href} href={href} className="hover:text-foreground">{label}</a>
