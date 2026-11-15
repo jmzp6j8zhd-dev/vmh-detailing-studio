@@ -15,6 +15,13 @@
       "when": 1794390613441,
       "tag": "0001_migration",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794744775815,
+      "tag": "0002_auto_delete_old_quotes",
+      "breakpoints": true
     }
   ]
 }
