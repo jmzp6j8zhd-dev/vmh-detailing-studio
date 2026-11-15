@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import {
   Phone,
   Mail,
@@ -85,7 +85,12 @@ function Btn({ href, children, primary }: { href: string; children: React.ReactN
 
 function Index() {
   const { data: content = defaultContent } = useQuery(contentQuery);
-  const { data: media = [] } = useQuery(mediaQuery);
+  const { data: media = [], isFetched: mediaLoaded } = useQuery(mediaQuery);
+  useEffect(() => {
+    if (!mediaLoaded || !window.location.hash) return;
+    const el = document.getElementById(window.location.hash.slice(1));
+    if (el) requestAnimationFrame(() => el.scrollIntoView());
+  }, [mediaLoaded]);
   const { packages, onDemand } = content;
   const resultGroups = groupResults(media);
   const [sent, setSent] = useState(false);
