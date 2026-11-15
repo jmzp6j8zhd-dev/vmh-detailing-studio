@@ -11,7 +11,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import logo from "@/assets/vmh_logo.jpg.asset.json";
+import logo from "@/assets/vmh-logo-2.png.asset.json";
 import hero from "@/assets/hero-car.jpg";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
