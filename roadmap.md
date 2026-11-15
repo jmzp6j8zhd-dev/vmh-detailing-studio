@@ -1,6 +1,7 @@
 # Taken
 
-- [ ] Beheerpaneel volledig testen: inloggen, aanvragen, teksten opslaan en media beheren; testgegevens opruimen.
+- [x] Beheerpaneel getest: toegangsregels, aanvragen, teksten opslaan en media beheren; geen testgegevens achtergebleven.
+- [ ] Echt inloggen testen — wacht tot Yoran zijn account aanmaakt en bevestigt.
 
 - [x] Titels en beschrijvingen optimaliseren voor car detailing en autoreiniging in Izegem.
 - [x] Lokale bedrijfsgegevens als gestructureerde data toevoegen.
