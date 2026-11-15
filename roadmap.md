@@ -1,5 +1,10 @@
 # Taken
 
+- [ ] Aanvragen automatisch verwijderen na 1 maand.
+- [ ] Privacypagina in het Nederlands + link onder formulier en in footer.
+- [ ] Google-kaart pas laden na klik.
+- [ ] Lettertypes op de site zelf zetten.
+
 - [x] Beheerpaneel getest: toegangsregels, aanvragen, teksten opslaan en media beheren; geen testgegevens achtergebleven.
 - [ ] Echt inloggen testen — wacht tot Yoran zijn account aanmaakt en bevestigt.
 
